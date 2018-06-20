@@ -15,7 +15,7 @@ import { AuctionResults } from "./Routes/AuctionResults"
 import { CV } from "./Routes/CV"
 import { Overview } from "./Routes/Overview"
 import { RelatedArtists } from "./Routes/RelatedArtists"
-import { Shows } from "./Routes/Shows"
+import { ShowsContent } from "./Routes/Shows"
 
 injectGlobalCSS()
 
@@ -49,7 +49,13 @@ export class Artist extends React.Component {
                       </ContextProvider>
                     </Tab>
                     <Tab name="Shows">
-                      <Shows />
+                      <ContextProvider>
+                        <ShowsContent
+                          status="running"
+                          artistID="pablo-picasso"
+                          sort="end_at_asc"
+                        />
+                      </ContextProvider>
                     </Tab>
                     <Tab name="Auction results">
                       <AuctionResults />
