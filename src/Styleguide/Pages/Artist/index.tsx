@@ -1,3 +1,4 @@
+import { Sans } from "@artsy/palette"
 import { injectGlobalCSS, Theme, themeProps } from "@artsy/palette"
 import { ContextProvider } from "Components/Artsy"
 import React from "react"
@@ -49,11 +50,34 @@ export class Artist extends React.Component {
                       </ContextProvider>
                     </Tab>
                     <Tab name="Shows">
+                      <Sans size="3" weight="medium">
+                        Currently on view
+                      </Sans>
                       <ContextProvider>
                         <ShowsContent
                           status="running"
                           artistID="pablo-picasso"
                           sort="end_at_asc"
+                        />
+                      </ContextProvider>
+                      <Sans size="3" weight="medium">
+                        Upcoming
+                      </Sans>
+                      <ContextProvider>
+                        <ShowsContent
+                          status="upcoming"
+                          artistID="andy-warhol"
+                          sort="start_at_asc"
+                        />
+                      </ContextProvider>
+                      <Sans size="3" weight="medium">
+                        Past
+                      </Sans>
+                      <ContextProvider>
+                        <ShowsContent
+                          status="closed"
+                          artistID="pablo-picasso"
+                          sort="end_at_desc"
                         />
                       </ContextProvider>
                     </Tab>

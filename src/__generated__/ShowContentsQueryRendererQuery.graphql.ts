@@ -2,40 +2,34 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type PartnerShowSorts = "CREATED_AT_ASC" | "CREATED_AT_DESC" | "END_AT_ASC" | "END_AT_DESC" | "NAME_ASC" | "NAME_DESC" | "PUBLISH_AT_ASC" | "PUBLISH_AT_DESC" | "START_AT_ASC" | "START_AT_DESC" | "created_at_asc" | "created_at_desc" | "end_at_asc" | "end_at_desc" | "name_asc" | "name_desc" | "publish_at_asc" | "publish_at_desc" | "start_at_asc" | "start_at_desc" | "%future added value";
-export type ShowsQueryVariables = {
-    readonly first?: number | null;
-    readonly last?: number | null;
-    readonly after?: string | null;
-    readonly before?: string | null;
+export type ShowContentsQueryRendererQueryVariables = {
     readonly artistID: string;
+    readonly first: number;
     readonly sort?: PartnerShowSorts | null;
     readonly status: string;
 };
-export type ShowsQueryResponse = {
+export type ShowContentsQueryRendererQueryResponse = {
     readonly artist: ({}) | null;
 };
 
 
 
 /*
-query ShowsQuery(
-  $first: Int
-  $last: Int
-  $after: String
-  $before: String
+query ShowContentsQueryRendererQuery(
   $artistID: String!
+  $first: Int!
   $sort: PartnerShowSorts
   $status: String!
 ) {
   artist(id: $artistID) {
-    ...Shows_artist_1Q1mII
+    ...ShowContents_artist_2L65Wq
     __id
   }
 }
 
-fragment Shows_artist_1Q1mII on Artist {
+fragment ShowContents_artist_2L65Wq on Artist {
   id
-  showsConnection(first: $first, after: $after, before: $before, last: $last, sort: $sort, status: $status) {
+  showsConnection(first: $first, sort: $sort, status: $status) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -77,10 +71,11 @@ fragment Shows_artist_1Q1mII on Artist {
         name
         exhibition_period
         cover_image {
-          cropped(width: 400, height: 300) {
+          cropped(width: 800, height: 600) {
             url
           }
         }
+        city
         __id
       }
     }
@@ -93,32 +88,14 @@ const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
-    "name": "first",
-    "type": "Int",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "last",
-    "type": "Int",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "after",
-    "type": "String",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "before",
-    "type": "String",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
     "name": "artistID",
     "type": "String!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "first",
+    "type": "Int!",
     "defaultValue": null
   },
   {
@@ -185,13 +162,13 @@ v5 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "ShowsQuery",
+  "name": "ShowContentsQueryRendererQuery",
   "id": null,
-  "text": "query ShowsQuery(\n  $first: Int\n  $last: Int\n  $after: String\n  $before: String\n  $artistID: String!\n  $sort: PartnerShowSorts\n  $status: String!\n) {\n  artist(id: $artistID) {\n    ...Shows_artist_1Q1mII\n    __id\n  }\n}\n\nfragment Shows_artist_1Q1mII on Artist {\n  id\n  showsConnection(first: $first, after: $after, before: $before, last: $last, sort: $sort, status: $status) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    pageCursors {\n      around {\n        cursor\n        page\n        isCurrent\n      }\n      first {\n        cursor\n        page\n        isCurrent\n      }\n      last {\n        cursor\n        page\n        isCurrent\n      }\n    }\n    edges {\n      node {\n        partner {\n          __typename\n          ... on ExternalPartner {\n            name\n            __id\n          }\n          ... on Partner {\n            name\n          }\n          ... on Node {\n            __id\n          }\n        }\n        name\n        exhibition_period\n        cover_image {\n          cropped(width: 400, height: 300) {\n            url\n          }\n        }\n        __id\n      }\n    }\n  }\n  __id\n}\n",
+  "text": "query ShowContentsQueryRendererQuery(\n  $artistID: String!\n  $first: Int!\n  $sort: PartnerShowSorts\n  $status: String!\n) {\n  artist(id: $artistID) {\n    ...ShowContents_artist_2L65Wq\n    __id\n  }\n}\n\nfragment ShowContents_artist_2L65Wq on Artist {\n  id\n  showsConnection(first: $first, sort: $sort, status: $status) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    pageCursors {\n      around {\n        cursor\n        page\n        isCurrent\n      }\n      first {\n        cursor\n        page\n        isCurrent\n      }\n      last {\n        cursor\n        page\n        isCurrent\n      }\n    }\n    edges {\n      node {\n        partner {\n          __typename\n          ... on ExternalPartner {\n            name\n            __id\n          }\n          ... on Partner {\n            name\n          }\n          ... on Node {\n            __id\n          }\n        }\n        name\n        exhibition_period\n        cover_image {\n          cropped(width: 800, height: 600) {\n            url\n          }\n        }\n        city\n        __id\n      }\n    }\n  }\n  __id\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "ShowsQuery",
+    "name": "ShowContentsQueryRendererQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -207,30 +184,12 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "Shows_artist",
+            "name": "ShowContents_artist",
             "args": [
-              {
-                "kind": "Variable",
-                "name": "after",
-                "variableName": "after",
-                "type": null
-              },
-              {
-                "kind": "Variable",
-                "name": "before",
-                "variableName": "before",
-                "type": null
-              },
               {
                 "kind": "Variable",
                 "name": "first",
                 "variableName": "first",
-                "type": null
-              },
-              {
-                "kind": "Variable",
-                "name": "last",
-                "variableName": "last",
                 "type": null
               },
               {
@@ -254,7 +213,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ShowsQuery",
+    "name": "ShowContentsQueryRendererQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -281,26 +240,8 @@ return {
             "args": [
               {
                 "kind": "Variable",
-                "name": "after",
-                "variableName": "after",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
-                "name": "before",
-                "variableName": "before",
-                "type": "String"
-              },
-              {
-                "kind": "Variable",
                 "name": "first",
                 "variableName": "first",
-                "type": "Int"
-              },
-              {
-                "kind": "Variable",
-                "name": "last",
-                "variableName": "last",
                 "type": "Int"
               },
               {
@@ -467,18 +408,18 @@ return {
                             "kind": "LinkedField",
                             "alias": null,
                             "name": "cropped",
-                            "storageKey": "cropped(height:300,width:400)",
+                            "storageKey": "cropped(height:600,width:800)",
                             "args": [
                               {
                                 "kind": "Literal",
                                 "name": "height",
-                                "value": 300,
+                                "value": 600,
                                 "type": "Int!"
                               },
                               {
                                 "kind": "Literal",
                                 "name": "width",
-                                "value": 400,
+                                "value": 800,
                                 "type": "Int!"
                               }
                             ],
@@ -496,6 +437,13 @@ return {
                           }
                         ]
                       },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "city",
+                        "args": null,
+                        "storageKey": null
+                      },
                       v2
                     ]
                   }
@@ -510,5 +458,5 @@ return {
   }
 };
 })();
-(node as any).hash = 'd98183e726c97d7d8c243b4ea31a8733';
+(node as any).hash = 'fb99e38880fa6b087d0d7c5ff3b38d8c';
 export default node;

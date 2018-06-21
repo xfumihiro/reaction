@@ -1,7 +1,7 @@
 /* tslint:disable */
 
 import { ConcreteFragment } from "relay-runtime";
-export type Shows_artist = {
+export type ShowContents_artist = {
     readonly id: string;
     readonly showsConnection: ({
         readonly pageInfo: {
@@ -39,6 +39,7 @@ export type Shows_artist = {
                         readonly url: string | null;
                     }) | null;
                 }) | null;
+                readonly city: string | null;
             }) | null;
         }) | null> | null;
     }) | null;
@@ -89,7 +90,7 @@ v3 = [
 ];
 return {
   "kind": "Fragment",
-  "name": "Shows_artist",
+  "name": "ShowContents_artist",
   "type": "Artist",
   "metadata": null,
   "argumentDefinitions": [
@@ -325,18 +326,18 @@ return {
                       "kind": "LinkedField",
                       "alias": null,
                       "name": "cropped",
-                      "storageKey": "cropped(height:300,width:400)",
+                      "storageKey": "cropped(height:600,width:800)",
                       "args": [
                         {
                           "kind": "Literal",
                           "name": "height",
-                          "value": 300,
+                          "value": 600,
                           "type": "Int!"
                         },
                         {
                           "kind": "Literal",
                           "name": "width",
-                          "value": 400,
+                          "value": 800,
                           "type": "Int!"
                         }
                       ],
@@ -354,6 +355,13 @@ return {
                     }
                   ]
                 },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "city",
+                  "args": null,
+                  "storageKey": null
+                },
                 v1
               ]
             }
@@ -365,5 +373,5 @@ return {
   ]
 };
 })();
-(node as any).hash = 'ed2b104991be7232660b2154849f4e4e';
+(node as any).hash = '8dc9a92909f545d0b1cb8b6153bf9f61';
 export default node;
