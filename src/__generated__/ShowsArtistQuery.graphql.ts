@@ -2,20 +2,20 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type PartnerShowSorts = "CREATED_AT_ASC" | "CREATED_AT_DESC" | "END_AT_ASC" | "END_AT_DESC" | "NAME_ASC" | "NAME_DESC" | "PUBLISH_AT_ASC" | "PUBLISH_AT_DESC" | "START_AT_ASC" | "START_AT_DESC" | "created_at_asc" | "created_at_desc" | "end_at_asc" | "end_at_desc" | "name_asc" | "name_desc" | "publish_at_asc" | "publish_at_desc" | "start_at_asc" | "start_at_desc" | "%future added value";
-export type ShowContentsQueryRendererQueryVariables = {
+export type ShowsArtistQueryVariables = {
     readonly artistID: string;
     readonly first: number;
     readonly sort?: PartnerShowSorts | null;
     readonly status: string;
 };
-export type ShowContentsQueryRendererQueryResponse = {
+export type ShowsArtistQueryResponse = {
     readonly artist: ({}) | null;
 };
 
 
 
 /*
-query ShowContentsQueryRendererQuery(
+query ShowsArtistQuery(
   $artistID: String!
   $first: Int!
   $sort: PartnerShowSorts
@@ -162,13 +162,13 @@ v5 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "ShowContentsQueryRendererQuery",
+  "name": "ShowsArtistQuery",
   "id": null,
-  "text": "query ShowContentsQueryRendererQuery(\n  $artistID: String!\n  $first: Int!\n  $sort: PartnerShowSorts\n  $status: String!\n) {\n  artist(id: $artistID) {\n    ...ShowContents_artist_2L65Wq\n    __id\n  }\n}\n\nfragment ShowContents_artist_2L65Wq on Artist {\n  id\n  showsConnection(first: $first, sort: $sort, status: $status) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    pageCursors {\n      around {\n        cursor\n        page\n        isCurrent\n      }\n      first {\n        cursor\n        page\n        isCurrent\n      }\n      last {\n        cursor\n        page\n        isCurrent\n      }\n    }\n    edges {\n      node {\n        partner {\n          __typename\n          ... on ExternalPartner {\n            name\n            __id\n          }\n          ... on Partner {\n            name\n          }\n          ... on Node {\n            __id\n          }\n        }\n        name\n        exhibition_period\n        cover_image {\n          cropped(width: 800, height: 600) {\n            url\n          }\n        }\n        city\n        __id\n      }\n    }\n  }\n  __id\n}\n",
+  "text": "query ShowsArtistQuery(\n  $artistID: String!\n  $first: Int!\n  $sort: PartnerShowSorts\n  $status: String!\n) {\n  artist(id: $artistID) {\n    ...ShowContents_artist_2L65Wq\n    __id\n  }\n}\n\nfragment ShowContents_artist_2L65Wq on Artist {\n  id\n  showsConnection(first: $first, sort: $sort, status: $status) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    pageCursors {\n      around {\n        cursor\n        page\n        isCurrent\n      }\n      first {\n        cursor\n        page\n        isCurrent\n      }\n      last {\n        cursor\n        page\n        isCurrent\n      }\n    }\n    edges {\n      node {\n        partner {\n          __typename\n          ... on ExternalPartner {\n            name\n            __id\n          }\n          ... on Partner {\n            name\n          }\n          ... on Node {\n            __id\n          }\n        }\n        name\n        exhibition_period\n        cover_image {\n          cropped(width: 800, height: 600) {\n            url\n          }\n        }\n        city\n        __id\n      }\n    }\n  }\n  __id\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "ShowContentsQueryRendererQuery",
+    "name": "ShowsArtistQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -213,7 +213,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ShowContentsQueryRendererQuery",
+    "name": "ShowsArtistQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -458,5 +458,5 @@ return {
   }
 };
 })();
-(node as any).hash = 'fb99e38880fa6b087d0d7c5ff3b38d8c';
+(node as any).hash = 'db1298cc52209f493484d723a7a1a078';
 export default node;

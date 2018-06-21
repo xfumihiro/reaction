@@ -1,7 +1,7 @@
 import { Sans } from "@artsy/palette"
-import { ContextConsumer } from "Components/Artsy"
+import { ContextConsumer, ContextProps } from "Components/Artsy"
 import React from "react"
-
+import { graphql, QueryRenderer } from "react-relay"
 import { Pagination } from "Styleguide/Components/Pagination"
 import { Box } from "Styleguide/Elements/Box"
 import { Flex } from "Styleguide/Elements/Flex"
@@ -15,13 +15,51 @@ import { Responsive } from "Styleguide/Utils/Responsive"
 import { ShowBlockItem } from "./ShowBlockItem"
 import { ShowListItem } from "./ShowListItem"
 
-import { ShowsQueryRenderer } from "./ShowContents"
+import { Container, PAGE_SIZE } from "./ShowContents"
 
 const ShowBlocks = Flex
 const ShowList = Box
 const Category = Sans
 
-export const ShowsContent: any = ContextConsumer(ShowsQueryRenderer)
+interface Props extends ContextProps {
+  artistID: string
+  status: string
+  sort: string
+}
+
+export const RelayShowsContent = ContextConsumer(
+  class extends React.Component<Props> {
+    render() {
+      const { artistID, relayEnvironment, status, sort } = this.props
+      return (
+        <QueryRenderer
+          environment={relayEnvironment}
+          query={graphql`
+            query ShowsArtistQuery(
+              $artistID: String!
+              $first: Int!
+              $sort: PartnerShowSorts
+              $status: String!
+            ) {
+              artist(id: $artistID) {
+                ...ShowContents_artist
+                  @arguments(sort: $sort, status: $status, first: $first)
+              }
+            }
+          `}
+          variables={{ artistID, first: PAGE_SIZE, status, sort }}
+          render={({ props }) => {
+            if (props) {
+              return <Container status={status} artist={props.artist} />
+            } else {
+              return null
+            }
+          }}
+        />
+      )
+    }
+  }
+)
 
 export const Shows = () => {
   const { cursor, callbacks } = paginationProps
@@ -47,7 +85,7 @@ export const Shows = () => {
                   <Col>
                     <ShowBlocks
                       flexDirection={blockDirection}
-                      wrap={"true" as any}
+                      flexWrap={"true" as any}
                     >
                       <ShowBlockItem
                         blockWidth={blockWidth}
