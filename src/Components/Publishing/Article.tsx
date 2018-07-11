@@ -1,6 +1,6 @@
 import React from "react"
+import track from "react-tracking"
 import Events from "../../Utils/Events"
-import track from "../../Utils/track"
 import { ArticleWithFullScreen } from "./Layouts/ArticleWithFullScreen"
 import { NewsLayout } from "./Layouts/NewsLayout"
 import { SeriesLayout } from "./Layouts/SeriesLayout"
