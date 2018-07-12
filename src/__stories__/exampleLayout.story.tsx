@@ -20,6 +20,6 @@ storiesOf("Core/Elements", module)
 
 storiesOf("Core/Components", module).add("placeholder", () => <div />)
 
-storiesOf("Partner", module).add("placeholder", () => <div />)
+storiesOf("Partner Components", module).add("placeholder", () => <div />)
 
-storiesOf("Collection", module).add("placeholder", () => <div />)
+storiesOf("Collector Components", module).add("placeholder", () => <div />)
