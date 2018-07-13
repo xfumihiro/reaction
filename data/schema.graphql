@@ -2194,6 +2194,7 @@ type CroppedImageUrl {
 }
 
 type CurrentEvent {
+  event: UnderlyingCurrentEvent!
   image: Image
 
   # The state of the event
@@ -3892,7 +3893,7 @@ type Mutation {
   # Create a new consignment submission using Convection
   createConsignmentSubmission(input: CreateSubmissionMutationInput!): CreateSubmissionMutationPayload
 
-  # Update a consigment using Convection
+  # Update a consignment using Convection
   updateConsignmentSubmission(input: UpdateSubmissionMutationInput!): UpdateSubmissionMutationPayload
 
   # Attach an gemini asset to a consignment submission
@@ -5850,6 +5851,8 @@ enum TrendingMetrics {
   # Base time period: 2 weeks
   ARTIST_SEARCH
 }
+
+union UnderlyingCurrentEvent = Show | Sale
 
 input UpdateCollectorProfileInput {
   loyalty_applicant: Boolean
