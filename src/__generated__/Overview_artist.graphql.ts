@@ -7,6 +7,7 @@ export type Overview_artist = {
     readonly counts: ({
         readonly partner_shows: any | null;
     }) | null;
+    readonly href: string | null;
     readonly is_consignable: boolean | null;
 };
 
@@ -27,6 +28,46 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "counts",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "ArtistCounts",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "partner_shows",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "ArtistHeader_artist",
+      "args": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "CurrentEvent_artist",
+      "args": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "MarketInsightsArtistPage_artist",
+      "args": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -53,48 +94,15 @@ return {
     },
     {
       "kind": "FragmentSpread",
-      "name": "ArtistHeader_artist",
-      "args": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "CurrentEvent_artist",
-      "args": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "MarketInsightsArtistPage_artist",
+      "name": "ArtistBio_bio",
       "args": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "id",
+      "name": "href",
       "args": null,
       "storageKey": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "ArtistBio_bio",
-      "args": null
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "counts",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "ArtistCounts",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "partner_shows",
-          "args": null,
-          "storageKey": null
-        }
-      ]
     },
     {
       "kind": "ScalarField",
@@ -117,5 +125,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '1c01b7541f53768bcccbdd6bb2d29cd2';
+(node as any).hash = '1f19a4d1202bdd9d5d8d5b424069975b';
 export default node;

@@ -27,7 +27,7 @@ export class RelatedArticleFigure extends React.Component<
     this.onClick = this.onClick.bind(this)
   }
 
-  @track((props, [e]) => ({
+  @track((props, _state, [e]) => ({
     action: "Clicked article impression",
     article_id: props.article.id,
     destination_path: e.currentTarget.attributes.href.value,
